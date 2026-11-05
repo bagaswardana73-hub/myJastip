@@ -3,14 +3,7 @@ package myjastip.app;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import myjastip.db.DatabaseUtil;
@@ -139,7 +132,6 @@ public class AuthView {
                     String userId = DatabaseUtil.getUserId(name, pass);
                     User user = DatabaseUtil.getUser(userId);
                     if (user != null) {
-//                      appWindow.showDashboardScene(user);
                         if (user instanceof Customer) {
                             appWindow.showCustomerDashboardScene((Customer) user);
                         } else if (user instanceof Jastiper) {
@@ -342,7 +334,6 @@ public class AuthView {
                     } else {
                         Customer customer = new Customer(uuid.toString(), username, email, password, phoneNumber, Double.parseDouble(balance));
                         DatabaseUtil.insertUser(customer);
-//                      appWindow.showDashboardScene(customer);
                         appWindow.showCustomerDashboardScene(customer);
                     }
 
