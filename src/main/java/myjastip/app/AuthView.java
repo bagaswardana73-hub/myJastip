@@ -132,7 +132,7 @@ public class AuthView {
                     String userId = DatabaseUtil.getUserId(name, pass);
                     User user = DatabaseUtil.getUser(userId);
                     if (user != null) {
-//                        appWindow.showDashboardScene(user);
+//                      appWindow.showDashboardScene(user);
                         if (user instanceof Customer) {
                             appWindow.showCustomerDashboardScene((Customer) user);
                         } else if (user instanceof Jastiper) {
@@ -235,9 +235,9 @@ public class AuthView {
         UnaryOperator<TextFormatter.Change> integerFilter = change -> {
             String newText = change.getControlNewText();
             if (newText.matches("\\d*")) {
-                return change; // Accept the change
+                return change;
             }
-            return null; // Reject the change
+            return null;
         };
 
         TextField phoneNumberInput = new TextField();
@@ -246,9 +246,9 @@ public class AuthView {
         phoneNumberInput.setStyle(inputFieldStyle);
         phoneNumberInput.focusedProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal) {
-                passwordInput.setStyle(inputFieldFocusStyle);
+                phoneNumberInput.setStyle(inputFieldFocusStyle);
             } else {
-                passwordInput.setStyle(inputFieldStyle);
+                phoneNumberInput.setStyle(inputFieldStyle);
             }
         });
 
@@ -268,7 +268,6 @@ public class AuthView {
 
         UnaryOperator<TextFormatter.Change> decimalFilter = change -> {
             String newText = change.getControlNewText();
-            // Allows empty input, digits, and a optional single decimal dot
             if (newText.matches("\\d*\\.?\\d*")) {
                 return change;
             }
@@ -336,7 +335,7 @@ public class AuthView {
                     } else {
                         Customer customer = new Customer(uuid.toString(), username, email, password, phoneNumber, Double.parseDouble(balance));
                         DatabaseUtil.insertUser(customer);
-//                        appWindow.showDashboardScene(customer);
+//                      appWindow.showDashboardScene(customer);
                         appWindow.showCustomerDashboardScene(customer);
                     }
 
